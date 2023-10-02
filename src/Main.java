@@ -1,27 +1,32 @@
-import composite.ArquivoPDF;
-import composite.ArquivoPNG;
-import composite.ArquivoTexto;
-import composite.Pasta;
-import singleton.ConectorBD;
+import java.util.ArrayList;
+import java.util.List;
+
+import adapter.AdaptadorHexagono;
+import adapter.Circulo;
+import adapter.Forma;
+import adapter.FormaHexagonal;
+import adapter.Triangulo;
+import template.MistoQuente;
+import template.Sanduiche;
+import template.XTudo;
 
 public class Main {
     public static void main(String[] args) {
 
-        // Uso do singleton:
-        // ConectorBD conectorBD = ConectorBD.getInstancia();
+        // Uso do template method
+        // Sanduiche sanduiche = new XTudo();
+        // sanduiche.fazer();
 
-        // Uso do composite:
-        ArquivoPDF provaAV1 = new ArquivoPDF();
-        ArquivoTexto anotacoes = new ArquivoTexto();
-        ArquivoPNG fotoAula = new ArquivoPNG();
+        // Uso do adapter
 
-        Pasta pastaPAS = new Pasta();
-        pastaPAS.adicionarArquivo(provaAV1);
-        pastaPAS.adicionarArquivo(anotacoes);
-        pastaPAS.adicionarArquivo(fotoAula);
+        List<Forma> formasGeometricas = new ArrayList<>();
 
-        Pasta estudosUNIFOR = new Pasta();
-        estudosUNIFOR.adicionarArquivo(pastaPAS);
+        formasGeometricas.add(new Circulo());
+        formasGeometricas.add(new Triangulo());
+        formasGeometricas.add(new AdaptadorHexagono());
+
+        for (Forma forma : formasGeometricas)
+            forma.calcularArea();
 
     }
 }
