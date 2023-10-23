@@ -33,4 +33,6 @@ public class Produto {
         this.preco = preco;
     }
 
+    //FIXME compareTo
+
 }
